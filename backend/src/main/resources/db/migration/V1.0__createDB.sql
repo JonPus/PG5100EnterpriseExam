@@ -6,16 +6,15 @@ create sequence hibernate_sequence start with 1 increment by 1;
     booked_by_userid    varchar(255) not null,
     trip_information_id bigint       not null,
     primary key (id)
-);
-create table trip
+);*//*
+create table place_holder
 (
-    id             bigint       not null,
-    cost           bigint       not null,
-    departure_date date         not null,
-    description    varchar(255),
-    location_name  varchar(300) not null,
-    return_date    date         not null,
-    title          varchar(300),
+    id                bigint       not null,
+    cost              bigint       not null,
+    description       varchar(255),
+    placeholder_name  varchar(300) not null,
+    place_holder_date date         not null,
+    title             varchar(300),
     primary key (id)
 );*/
 create table users
@@ -29,16 +28,17 @@ create table users
     primary key (userid)
 );
 /*
-create table users_booked_trips
+create table place_holder_all_placeholders
 (
-    all_travelers_userid varchar(255) not null,
-    booked_trips_id      bigint       not null
-);
+    all_placeholders_userid varchar(255) not null,
+    place_holder_id         bigint       not null
+);*/
+
 create table users_roles
 (
     users_userid varchar(255) not null,
     roles        varchar(255)
-);*/
+);
 /*
 alter table users
     add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);

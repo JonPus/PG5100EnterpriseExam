@@ -40,14 +40,14 @@ public class UserService {
         return true;
     }
 
-    public Users findUserByUserName(String userName) {
+    /*public Users findUserByUserName(String userName) {
         Users users = em.find(Users.class, userName);
         if (users == null) {
             throw new IllegalStateException("No user with given userName");
         }
         users.getPlaceHolderList().size();
         return users;
-    }
+    }*/
 
 
 }

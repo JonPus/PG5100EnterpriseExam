@@ -1,6 +1,5 @@
 package no.enterprise.exam.backend.service;
 
-import no.enterprise.exam.backend.entity.PlaceHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,8 @@ public class DefaultDataInitializerService {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PlaceHolder placeHolder;
+    /*@Autowired
+    private PlaceHolder placeHolder;*/
 
     @PostConstruct
     public void init() {
