@@ -19,7 +19,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean createUser(String userName, String firstName, String lastName, String password, String email, String role) {
+    public boolean createUser(String userName, String name, String lastName, Long currency, String password, String email, String role) {
         String hashedPassword = passwordEncoder.encode(password);
 
         if ((em.find(Users.class, userName) != null) || (em.find(Users.class, email) != null)) {
@@ -28,8 +28,9 @@ public class UserService {
 
         Users users = new Users();
         users.setUserID(userName);
-        users.setFirstName(firstName);
+        users.setName(name);
         users.setLastName(lastName);
+        users.setCurrency(currency);
         users.setHashedPassword(hashedPassword);
         users.setRoles(Collections.singleton(role));
         users.setEnabled(true);
@@ -40,14 +41,14 @@ public class UserService {
         return true;
     }
 
-    /*public Users findUserByUserName(String userName) {
+    public Users findUserByUserName(String userName) {
         Users users = em.find(Users.class, userName);
         if (users == null) {
             throw new IllegalStateException("No user with given userName");
         }
-        users.getPlaceHolderList().size();
+        users.getOwnedItems().size();
         return users;
-    }*/
+    }
 
 
 }
