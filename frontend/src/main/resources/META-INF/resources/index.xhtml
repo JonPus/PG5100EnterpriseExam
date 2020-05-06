@@ -19,18 +19,29 @@
 
         <c:if test="#{empty param['query']}">
             <ui:param name="listOfItems" value="#{itemController.getItems(6)}"/>
-            <ui:param name="errorText" value="No monster!"/>
+            <ui:param name="errorText" value="No Item!"/>
         </c:if>
         <c:if test="#{!empty param['query']}">
-            <ui:param name="listOfMonsters"
-                      value="#{itemController.filterMonstersBy(param['searchBy'], param['query'])}"/>
-            <ui:param name="errorText" value="No monsters meating criteria"/>
+            <ui:param name="listOfItems"
+                      value="#{itemController.filterItemsBy(param['searchBy'], param['query'])}"/>
+            <ui:param name="errorText" value="No items meating criteria"/>
         </c:if>
         <c:choose>
             <c:when test="#{listOfItems.size() == 0}">
                 <h:outputLabel>#{errorText}</h:outputLabel>
             </c:when>
             <c:otherwise>
+
+                <h:form prependId="false" styleClass="searchBox">
+                    <h:inputText id="queryInputID" styleClass="form-control m-2 p-2" value="#{searchController.query}"/>
+                    <h:selectOneMenu id="selectOneID" styleClass="form-control m-2 p-2"
+                                     value="#{searchController.selection}">
+                        <f:selectItem itemValue="byValue" itemLabel="Search by value"/>
+                        <f:selectItem itemValue="byName" itemLabel="Search by name"/>
+                    </h:selectOneMenu>
+                    <h:commandButton id="searchBtn" styleClass="btn-outline-primary form-control m-2 p-2" value="Submit"
+                                     action="#{searchController.getSearchLink()}"/>
+                </h:form>
 
                 <h:dataTable styleClass="table table-hover" value="#{listOfItems}"
                              var="item" border="1" id="itemTable">

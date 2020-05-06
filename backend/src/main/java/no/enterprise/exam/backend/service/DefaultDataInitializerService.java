@@ -84,19 +84,19 @@ public class DefaultDataInitializerService {
 
 
         //Vensaur
-        copyService.newPurchase(pokemonItemOne, firstUser);
-        copyService.newPurchase(pokemonItemOne, thirdUser);
+        copyService.newCopies(pokemonItemOne, firstUser);
+        copyService.newCopies(pokemonItemOne, thirdUser);
         //Charizard
-        copyService.newPurchase(pokemonItemTwo, secondUser);
-        copyService.newPurchase(pokemonItemTwo, thirdUser);
+        copyService.newCopies(pokemonItemTwo, secondUser);
+        copyService.newCopies(pokemonItemTwo, thirdUser);
         //Blastoise
-        copyService.newPurchase(pokemonItemthree, firstUser);
-        copyService.newPurchase(pokemonItemthree, secondUser);
-        copyService.newPurchase(pokemonItemthree, thirdUser);
+        copyService.newCopies(pokemonItemthree, firstUser);
+        copyService.newCopies(pokemonItemthree, secondUser);
+        copyService.newCopies(pokemonItemthree, thirdUser);
         //Gyarados
-        copyService.newPurchase(pokemonItemFour, secondUser);
+        copyService.newCopies(pokemonItemFour, secondUser);
         //Dragonite
-        copyService.newPurchase(pokemonItemFive, secondUser);
+        copyService.newCopies(pokemonItemFive, secondUser);
 
     }
 

@@ -2,7 +2,6 @@ package no.enterprise.exam.frontend.controller;
 
 import no.enterprise.exam.backend.entity.Item;
 import no.enterprise.exam.backend.entity.Users;
-import no.enterprise.exam.backend.service.CopyService;
 import no.enterprise.exam.backend.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,11 +24,25 @@ public class ItemController implements Serializable {
     @Autowired
     private ItemService itemService;
 
-    @Autowired
-    private CopyService copyService;
+    private Long itemID;
 
     public List<Item> getItems(int numberOfItems) {
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
+    }
+
+    public String getMonsterRedirectionLink(Long itemID) {
+        this.itemID = itemID;
+        return "/details.jsf?monsterID=" + itemID + "&faces-redirect=true";
+    }
+
+    public List<Item> filterItemsBy(String searchBy, String query) {
+        if (searchBy.equals("byValue")) {
+            return itemService.filterByCost(Long.valueOf(query));
+        } else if (searchBy.equals("byName")) {
+            return itemService.filterItemsByItemName(query);
+        } else {
+            return null;
+        }
     }
 
     public Item getItem(Long id) {

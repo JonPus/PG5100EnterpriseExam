@@ -2,30 +2,30 @@ create sequence hibernate_sequence start with 1 increment by 1;
 create table copy
 (
     id                  bigint       not null,
-    owned_by_userid     varchar(255) not null,
+    duplicates          integer,
     item_information_id bigint       not null,
-    duplicates             int,
+    owned_by_userid     varchar(255) not null,
     primary key (id)
 );
 create table item
 (
     id          bigint       not null,
-    value       bigint       not null,
-    description varchar(255) not null,
-    item_name   varchar(255) not null,
+    description varchar(255),
+    item_name   varchar(300) not null,
     title       varchar(300),
+    value       bigint       not null,
     primary key (id)
 );
 create table users
 (
     userid          varchar(255) not null,
+    available_boxes integer      not null,
+    currency        bigint,
     email           varchar(255),
     enabled         boolean      not null,
     hashed_password varchar(255),
     last_name       varchar(128),
-    name            varchar(255),
-    currency        bigint,
-    available_boxes int,
+    name            varchar(128),
     primary key (userid)
 );
 create table users_owned_items
@@ -41,12 +41,12 @@ create table users_roles
 alter table users
     add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);
 alter table copy
-    add constraint FKex4wa959mkii4fwx3s210ug24 foreign key (owned_by_userid) references users;
+    add constraint FKsadw2gxrjmsdpwwauacde7n1d foreign key (item_information_id) references item;
 alter table copy
-    add constraint FK3tv91lsph9bbpk4lpdu231yn0 foreign key (item_information_id) references item;
+    add constraint FKqn21pe3mrcdrybw4nrvrox6u9 foreign key (owned_by_userid) references users;
 alter table users_owned_items
-    add constraint FKqsn5ohuprxkk1s7cd348e8btl foreign key (owned_items_id) references item;
+    add constraint FKp0cfga0rr2lp2dj17c4vru2r3 foreign key (owned_items_id) references item;
 alter table users_owned_items
-    add constraint FK2d6a73d4l6qaq1th7ni5po6rj foreign key (all_owners_userid) references users;
+    add constraint FKaoxcfn72t7avmn1g2u9abu2mj foreign key (all_owners_userid) references users;
 alter table users_roles
-    add constraint FKnqgxij5udu4xrsqju9dtbc8pr foreign key (users_userid) references users;
+    add constraint FKnqgxij5udu4xrsqju9dtbc8pr foreign key (users_userid) references users

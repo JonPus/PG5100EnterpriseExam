@@ -32,7 +32,7 @@ class CopyServiceTest extends ServiceTestBase {
     public void testCreatePurchase() {
         userService.createUser("Jonathan", "Jonathan", "Pusparajah", 100L,  3,"123", "Jonathan@email.com", "user");
         Long monsterID = monsterService.createItem("Test", "My desc", 300L, "Mewtwo");
-        Long purchaseID = copyService.newPurchase(monsterID, "Jonathan");
+        Long purchaseID = copyService.newCopies(monsterID, "Jonathan");
         assertNotNull(purchaseID);
     }
 
@@ -44,8 +44,8 @@ class CopyServiceTest extends ServiceTestBase {
         Long firstMonster = monsterService.createItem("Test", "My desc", 100L, "Mew");
         Long secondMonster = monsterService.createItem("Test-2", "My desc-2", 200L, "Mewtwo");
 
-        Long firstPurchase = copyService.newPurchase(firstMonster, userName);
-        Long secondPurchase = copyService.newPurchase(secondMonster, userName);
+        Long firstPurchase = copyService.newCopies(firstMonster, userName);
+        Long secondPurchase = copyService.newCopies(secondMonster, userName);
 
         Users users = userService.findUserByUserName(userName);
         assertNotNull(firstPurchase);
@@ -67,9 +67,9 @@ class CopyServiceTest extends ServiceTestBase {
         Long firstMonster = monsterService.createItem("Test", "My desc", 100L, "Mew");
         Long secondMonster = monsterService.createItem("Test-2", "My desc-2", 200L, "Mewtwo");
 
-        Long firstPurchase = copyService.newPurchase(firstMonster, firstUser);
-        Long secondPurchase = copyService.newPurchase(secondMonster, firstUser);
-        Long thirdPurchase = copyService.newPurchase(secondMonster, secondUser);
+        Long firstPurchase = copyService.newCopies(firstMonster, firstUser);
+        Long secondPurchase = copyService.newCopies(secondMonster, firstUser);
+        Long thirdPurchase = copyService.newCopies(secondMonster, secondUser);
 
         assertNotNull(firstPurchase);
         assertNotNull(secondPurchase);

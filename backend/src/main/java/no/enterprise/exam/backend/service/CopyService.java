@@ -25,26 +25,6 @@ public class CopyService {
         return query.getResultList();
     }
 
-    public Long millCopy(Long copyID, String userID) {
-        Copy copy = entityManager.find(Copy.class, copyID);
-        Users users = entityManager.find(Users.class, userID);
-
-        if (copy == null) {
-            throw new IllegalArgumentException("Item does not exist.");
-        }
-
-        long currency = users.getCurrency() + copy.getItemInformation().getValue();
-        int duplicates = copy.getDuplicates();
-
-        if (duplicates > 1) {
-            entityManager.remove(copy);
-        } else {
-            duplicates--;
-            copy.setDuplicates(duplicates);
-        }
-        return users.setCurrency(currency);
-    }
-
     public List<Copy> filterPurchasesByMonster(Long monsterID) {
         TypedQuery<Copy> query = entityManager.createQuery(
                 "SELECT p FROM Copy p WHERE p.itemInformation.id =?1", Copy.class);
@@ -54,24 +34,24 @@ public class CopyService {
         return query.getResultList();
     }
 
-    public Long newPurchase(Long monsterID, String userID) {
-        Item monster = entityManager.find(Item.class, monsterID);
+    public Long newCopies(Long itemID, String userID) {
+        Item item = entityManager.find(Item.class, itemID);
         Users users = entityManager.find(Users.class, userID);
 
-        if (monster == null) {
-            throw new IllegalStateException("Monster not found.");
+        if (item == null) {
+            throw new IllegalStateException("Item not found.");
         }
         if (users == null) {
             throw new IllegalStateException("User not found.");
         }
 
-        Copy purchase = new Copy();
-        purchase.setOwnedBy(users);
-        purchase.setItemInformation(monster);
-        users.getOwnedItems().add(monster);
-        entityManager.persist(purchase);
+        Copy copy = new Copy();
+        copy.setOwnedBy(users);
+        copy.setItemInformation(item);
+        users.getOwnedItems().add(item);
+        entityManager.persist(copy);
 
-        return purchase.getId();
+        return copy.getId();
     }
 
 
