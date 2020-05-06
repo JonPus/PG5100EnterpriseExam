@@ -19,7 +19,15 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean createUser(String userName, String name, String lastName, Long currency, String password, String email, String role) {
+    public boolean createUser(
+            String userName,
+            String name,
+            String lastName,
+            Long currency,
+            Integer availableLootBoxes,
+            String password,
+            String email,
+            String role) {
         String hashedPassword = passwordEncoder.encode(password);
 
         if ((em.find(Users.class, userName) != null) || (em.find(Users.class, email) != null)) {
@@ -31,6 +39,7 @@ public class UserService {
         users.setName(name);
         users.setLastName(lastName);
         users.setCurrency(currency);
+        users.setAvailableBoxes(availableLootBoxes);
         users.setHashedPassword(hashedPassword);
         users.setRoles(Collections.singleton(role));
         users.setEnabled(true);
@@ -39,6 +48,15 @@ public class UserService {
         em.persist(users);
 
         return true;
+    }
+
+    public Users getUser(String userID) {
+        Users users = em.find(Users.class, userID);
+
+        if (users == null) {
+            throw new IllegalStateException("No such User found.");
+        }
+        return users;
     }
 
     public Users findUserByUserName(String userName) {
@@ -50,5 +68,15 @@ public class UserService {
         return users;
     }
 
+    public Boolean createUserLogin(String userName, String password) {
+
+        String hashedPassword = passwordEncoder.encode(password);
+
+        Users users = new Users();
+        users.setName(userName);
+        users.setHashedPassword(hashedPassword);
+        return true;
+
+    }
 
 }

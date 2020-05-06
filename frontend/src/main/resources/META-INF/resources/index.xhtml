@@ -12,8 +12,49 @@
         Home page
     </ui:define>
 
+
     <ui:define name="content">
-        <p>Hello World!</p>
+
+        <ui:param name="errorText" value=""/>
+
+        <c:if test="#{empty param['query']}">
+            <ui:param name="listOfItems" value="#{itemController.getItems(6)}"/>
+            <ui:param name="errorText" value="No monster!"/>
+        </c:if>
+        <c:if test="#{!empty param['query']}">
+            <ui:param name="listOfMonsters"
+                      value="#{itemController.filterMonstersBy(param['searchBy'], param['query'])}"/>
+            <ui:param name="errorText" value="No monsters meating criteria"/>
+        </c:if>
+        <c:choose>
+            <c:when test="#{listOfItems.size() == 0}">
+                <h:outputLabel>#{errorText}</h:outputLabel>
+            </c:when>
+            <c:otherwise>
+
+                <h:dataTable styleClass="table table-hover" value="#{listOfItems}"
+                             var="item" border="1" id="itemTable">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Title</f:facet>
+                        <h:outputText value="#{item.title}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        <h:outputText value="#{item.value}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{item.itemName}"/>
+
+                    </h:column>
+                </h:dataTable>
+
+            </c:otherwise>
+        </c:choose>
     </ui:define>
 </ui:composition>
 

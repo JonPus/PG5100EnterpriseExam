@@ -20,11 +20,15 @@ public class Users {
     @Size(max = 128)
     private String name;
 
-    @NotBlank
     @Size(max = 128)
     private String lastName;
 
     private Long currency;
+
+    private int availableBoxes;
+
+    @OneToMany(mappedBy = "ownedBy")
+    private List<Copy> copies;
 
     @NotBlank
     private String hashedPassword;
@@ -79,6 +83,14 @@ public class Users {
         return hashedPassword;
     }
 
+    public int getAvailableBoxes() {
+        return availableBoxes;
+    }
+
+    public void setAvailableBoxes(int availableBoxes) {
+        this.availableBoxes = availableBoxes;
+    }
+
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }
@@ -111,8 +123,8 @@ public class Users {
         return ownedItems;
     }
 
-    public void setOwnedItems(List<Item> boughtMonsters) {
-        this.ownedItems = boughtMonsters;
+    public void setOwnedItems(List<Item> boughtItems) {
+        this.ownedItems = boughtItems;
     }
 
 

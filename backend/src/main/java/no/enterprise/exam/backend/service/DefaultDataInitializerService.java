@@ -28,15 +28,15 @@ public class DefaultDataInitializerService {
 
         attempt(() -> {
             return userService.createUser(
-                    firstUser, firstUser, "admin-last-name", 3000L, "123", "admin@email.com", "admin");
+                    firstUser, firstUser, "admin-last-name", 3000L, 3, "123", "admin@email.com", "admin");
         });
         attempt(() -> {
             return userService.createUser(
-                    secondUser, secondUser, "foo-last-name", 3000L, "123", "foo@email.com", "user");
+                    secondUser, secondUser, "foo-last-name", 3000L, 3, "123", "foo@email.com", "user");
         });
         attempt(() -> {
             return userService.createUser(
-                    thirdUser, thirdUser, "bar-last-name", 3000L, "123", "bar@email.com", "user");
+                    thirdUser, thirdUser, "bar-last-name", 3000L, 3, "123", "bar@email.com", "user");
         });
 
         Long pokemonItemOne = attempt(() -> monsterService.createItem(

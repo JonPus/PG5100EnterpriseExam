@@ -10,7 +10,7 @@ public class Copy {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @NotNull
     private Users ownedBy;
 
@@ -19,6 +19,7 @@ public class Copy {
     @ManyToOne
     @NotNull
     private Item itemInformation;
+
 
     public Copy() {
 

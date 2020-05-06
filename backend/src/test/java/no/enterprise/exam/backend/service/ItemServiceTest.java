@@ -19,12 +19,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class ItemServiceTest extends ServiceTestBase {
 
     @Autowired
-    private ItemService monsterService;
+    private ItemService itemService;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     public void testCreateMonster() {
 
-        Long id = monsterService.createItem(
+        Long id = itemService.createItem(
                 "Title",
                 "MyDescription",
                 100L,
@@ -33,7 +36,7 @@ class ItemServiceTest extends ServiceTestBase {
 
         assertNotNull(id);
 
-        Item myMonster = monsterService.getItem(id, true);
+        Item myMonster = itemService.getItem(id, true);
         List<Users> users = myMonster.getAllOwners();
         assertNotNull(myMonster);
     }
@@ -41,14 +44,14 @@ class ItemServiceTest extends ServiceTestBase {
     @Test
     public void testGetAllMonsters() {
 
-        Long firstMonster = monsterService.createItem(
+        Long firstMonster = itemService.createItem(
                 "Title",
                 "MyDescription",
                 100L,
                 "Name"
         );
 
-        Long secondMonster = monsterService.createItem(
+        Long secondMonster = itemService.createItem(
                 "Title",
                 "MyDescription",
                 100L,
@@ -58,14 +61,14 @@ class ItemServiceTest extends ServiceTestBase {
         assertNotNull(firstMonster);
         assertNotNull(secondMonster);
 
-        List<Item> allMonsters = monsterService.getAllItems(false);
+        List<Item> allMonsters = itemService.getAllItems(false);
         assertEquals(2, allMonsters.size());
 
     }
 
     @Test
     public void testDeleteMonster() {
-        Long id = monsterService.createItem(
+        Long id = itemService.createItem(
                 "Title",
                 "MyDescription",
                 100L,
@@ -74,30 +77,61 @@ class ItemServiceTest extends ServiceTestBase {
 
         assertNotNull(id);
 
-        monsterService.deleteItem(id);
+        itemService.deleteItem(id);
 
-        assertThrows(IllegalStateException.class, () -> monsterService.getItem(id, false));
+        assertThrows(IllegalStateException.class, () -> itemService.getItem(id, false));
+
+    }
+
+    @Test
+    public void testGetRandomItem() {
+        itemService.createItem("Test1", "TestDesc1", 100L, "Test1");
+        itemService.createItem("Test2", "TestDesc2", 200L, "Test2");
+        itemService.createItem("Test3", "TestDesc3", 300L, "Test3");
+        itemService.createItem("Test4", "TestDesc4", 400L, "Test4");
+        itemService.createItem("Test5", "TestDesc5", 500L, "Test5");
+
+        Item newRandomItem = itemService.getRandomItem();
+        assertNotNull(newRandomItem);
+    }
+
+    @Test
+    public void testOpenLootBox() {
+        String userOne = "Foo";
+        userService.createUser(userOne, userOne, "Bar", 1000L, 3, "123", "Foo@email.com", "admin");
+
+        itemService.createItem("Test1", "DescTest1", 300L, "TestTitle1");
+        itemService.createItem("Test2", "DescTest2", 200L, "TestTitle2");
+        itemService.createItem("Test3", "DescTest3", 200L, "TestTitle3");
+        itemService.createItem("Test4", "DescTest4", 200L, "TestTitle4");
+        itemService.createItem("Test5", "DescTest5", 200L, "TestTitle5");
+
+        itemService.openLootBox(userOne);
+        List<Item> user = userService.getUser(userOne).getOwnedItems();
+        //assertEquals(3, user.size());
+        assertNotNull(user);
+        System.out.println(userOne);
 
     }
 
     @Test
     public void testFilterMonstersByNames() {
 
-        Long firstMonster = monsterService.createItem(
+        Long firstMonster = itemService.createItem(
                 "Title",
                 "MyDescription",
                 100L,
                 "Kaido"
         );
 
-        Long secondMonster = monsterService.createItem(
+        Long secondMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 100L,
                 "Luffy"
         );
 
-        Long thirdMonster = monsterService.createItem(
+        Long thirdMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 100L,
@@ -108,8 +142,8 @@ class ItemServiceTest extends ServiceTestBase {
         assertNotNull(secondMonster);
         assertNotNull(thirdMonster);
 
-        List<Item> kaidoMonsters = monsterService.filterItemsByItemName("Kaido");
-        List<Item> luffyMonsters = monsterService.filterItemsByItemName("Luffy");
+        List<Item> kaidoMonsters = itemService.filterItemsByItemName("Kaido");
+        List<Item> luffyMonsters = itemService.filterItemsByItemName("Luffy");
 
         assertEquals(1, kaidoMonsters.size());
         assertEquals(2, luffyMonsters.size());
@@ -119,7 +153,7 @@ class ItemServiceTest extends ServiceTestBase {
     @Test
     public void filterByCost() {
 
-        Long firstMonster = monsterService.createItem(
+        Long firstMonster = itemService.createItem(
                 "Title",
                 "MyDescription",
                 200L,
@@ -127,14 +161,14 @@ class ItemServiceTest extends ServiceTestBase {
 
         );
 
-        Long secondMonster = monsterService.createItem(
+        Long secondMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 100L,
                 "Luffy"
         );
 
-        Long thirdMonster = monsterService.createItem(
+        Long thirdMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 200L,
@@ -146,8 +180,8 @@ class ItemServiceTest extends ServiceTestBase {
         assertNotNull(secondMonster);
         assertNotNull(thirdMonster);
 
-        List<Item> cheapMonster = monsterService.filterByCost(100L);
-        List<Item> expensiveMonster = monsterService.filterByCost(200L);
+        List<Item> cheapMonster = itemService.filterByCost(100L);
+        List<Item> expensiveMonster = itemService.filterByCost(200L);
 
         assertEquals(1, cheapMonster.size());
         assertEquals(2, expensiveMonster.size());

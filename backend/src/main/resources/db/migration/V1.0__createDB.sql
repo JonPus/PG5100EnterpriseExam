@@ -4,7 +4,7 @@ create table copy
     id                  bigint       not null,
     owned_by_userid     varchar(255) not null,
     item_information_id bigint       not null,
-    duplicates int,
+    duplicates             int,
     primary key (id)
 );
 create table item
@@ -24,7 +24,8 @@ create table users
     hashed_password varchar(255),
     last_name       varchar(128),
     name            varchar(255),
-    currency bigint,
+    currency        bigint,
+    available_boxes int,
     primary key (userid)
 );
 create table users_owned_items

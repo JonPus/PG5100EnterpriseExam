@@ -11,14 +11,52 @@
 <ui:composition template="/layout.xhtml">
 
     <ui:define name="title">
-        User page
+        User Inventory
     </ui:define>
 
     <ui:define name="content">
         <c:set var="users" value="#{userInfoController.user}"/>
         <br/>
         <h:outputLabel id="userNameID">User name: #{users.name}</h:outputLabel><br/>
-        <h:outputLabel>User last name: #{users.lastName}</h:outputLabel><br/>
+
+        <h:dataTable styleClass="table table-hover" value="#{users.getOwnedItems()}"
+                     var="item" border="1" id="itemTable">
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                <h:outputText value="#{item.title}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Value</f:facet>
+                <h:outputText value="#{item.value}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{item.description}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sell</f:facet>
+                <h:form prependId="false" id="detailsForm">
+                    <h:commandButton value="Sell"
+                                     styleClass="btn btn-outline-info"
+                                     action="#{itemController.sellLootBox(item.id, userInfoController.userName)}"
+                                     id="detailsBtn_#{item.id}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <h:outputLabel id="currency">Currency: #{users.getCurrency()}</h:outputLabel><br/>
+        <h:outputLabel id="Lootboxes">Number of lootboxes: #{users.availableBoxes}</h:outputLabel><br/>
+        <h:form prependId="false" id="openLootForm">
+            <h:commandButton value="Open Lootbox"
+                             styleClass="btn btn-outline-info"
+                             action="#{itemController.openLootBox(userInfoController.userName)}"
+                             id="detailsBtn_1#{item.id}"/>
+        </h:form>
+        <h:form prependId="false" id="buyLootForm">
+            <h:commandButton value="Buy Lootbox"
+                             styleClass="btn btn-outline-info"
+                             action="#{itemController.buyLootBox(userInfoController.userName)}"
+                             id="detailsBtn_2#{item.id}"/>
+        </h:form>
 
     </ui:define>
 

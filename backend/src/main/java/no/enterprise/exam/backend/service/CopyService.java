@@ -74,6 +74,7 @@ public class CopyService {
         return purchase.getId();
     }
 
+
     public List<Copy> filterPurchaseByUser(String userID) {
         TypedQuery<Copy> query = entityManager.createQuery(
                 "SELECT p FROM Copy p WHERE p.ownedBy.userID =?1", Copy.class

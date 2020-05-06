@@ -1,6 +1,7 @@
 package no.enterprise.exam.backend.service;
 
 import no.enterprise.exam.backend.entity.Item;
+import no.enterprise.exam.backend.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -88,4 +90,40 @@ public class ItemService {
 
         return query.getResultList();
     }
+
+    public Item getRandomItem() {
+
+        TypedQuery<Long> sizeQuery = entityManager.createQuery(
+                "SELECT COUNT(i) FROM Item i", Long.class);
+        long size = sizeQuery.getSingleResult();
+
+        Random random = new Random();
+        int randomInt = random.nextInt((int) size);
+
+        TypedQuery<Item> query = entityManager.createQuery(
+                "SELECT i FROM Item  i", Item.class).setFirstResult(randomInt).setMaxResults(1);
+        Item item = query.getSingleResult();
+        return item;
+    }
+
+    public List<Item> openLootBox(String userID) {
+        Users users = entityManager.find(Users.class, userID);
+
+        List<Item> items = users.getOwnedItems();
+
+        if (users.getAvailableBoxes() >= 1) {
+            int newLootBoxCount = users.getAvailableBoxes() - 1;
+            users.setAvailableBoxes(newLootBoxCount);
+            items.add(getRandomItem());
+            items.add(getRandomItem());
+            items.add(getRandomItem());
+            users.setOwnedItems(items);
+            System.out.println(items);
+            return items;
+        } else {
+            throw new IllegalArgumentException("You are out of Lootboxes, buy more!");
+        }
+    }
+
+
 }
