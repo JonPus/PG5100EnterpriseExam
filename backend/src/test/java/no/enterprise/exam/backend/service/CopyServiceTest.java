@@ -31,7 +31,7 @@ class CopyServiceTest extends ServiceTestBase {
     @Test
     public void testCreatePurchase() {
         userService.createUser("Jonathan", "Jonathan", "Pusparajah", 100L,  3,"123", "Jonathan@email.com", "user");
-        Long monsterID = monsterService.createItem("Test", "My desc", 300L, "Mewtwo");
+        Long monsterID = monsterService.createItem("Test", "My desc", 300L, "Mewtwo", 1);
         Long purchaseID = copyService.newCopies(monsterID, "Jonathan");
         assertNotNull(purchaseID);
     }
@@ -41,8 +41,8 @@ class CopyServiceTest extends ServiceTestBase {
         String userName = "Jonathan";
 
         userService.createUser(userName, userName, "Pusparajah", 100L, 3,"123", "Jonathan@email.com", "user");
-        Long firstMonster = monsterService.createItem("Test", "My desc", 100L, "Mew");
-        Long secondMonster = monsterService.createItem("Test-2", "My desc-2", 200L, "Mewtwo");
+        Long firstMonster = monsterService.createItem("Test", "My desc", 100L, "Mew", 1);
+        Long secondMonster = monsterService.createItem("Test-2", "My desc-2", 200L, "Mewtwo", 1);
 
         Long firstPurchase = copyService.newCopies(firstMonster, userName);
         Long secondPurchase = copyService.newCopies(secondMonster, userName);
@@ -64,8 +64,8 @@ class CopyServiceTest extends ServiceTestBase {
         userService.createUser(firstUser, firstUser, "Pusparajah", 100L, 3,"123", "Jonathan@gmail.com", "user");
         userService.createUser(secondUser, secondUser, "Rotnebo", 200L, 3,"123", "Jon@gmail.com", "user");
 
-        Long firstMonster = monsterService.createItem("Test", "My desc", 100L, "Mew");
-        Long secondMonster = monsterService.createItem("Test-2", "My desc-2", 200L, "Mewtwo");
+        Long firstMonster = monsterService.createItem("Test", "My desc", 100L, "Mew", 1);
+        Long secondMonster = monsterService.createItem("Test-2", "My desc-2", 200L, "Mewtwo", 1);
 
         Long firstPurchase = copyService.newCopies(firstMonster, firstUser);
         Long secondPurchase = copyService.newCopies(secondMonster, firstUser);

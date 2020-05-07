@@ -2,18 +2,18 @@ create sequence hibernate_sequence start with 1 increment by 1;
 create table copy
 (
     id                  bigint       not null,
-    duplicates          integer,
     item_information_id bigint       not null,
     owned_by_userid     varchar(255) not null,
     primary key (id)
 );
 create table item
 (
-    id          bigint       not null,
-    description varchar(255),
-    item_name   varchar(300) not null,
-    title       varchar(300),
-    value       bigint       not null,
+    id             bigint       not null,
+    description    varchar(255),
+    item_name      varchar(300) not null,
+    title          varchar(300),
+    value          bigint       not null,
+    number_of_item integer      not null,
     primary key (id)
 );
 create table users
@@ -23,9 +23,10 @@ create table users
     currency        bigint,
     email           varchar(255),
     enabled         boolean      not null,
-    hashed_password varchar(255),
+    hashed_password varchar(255) not null,
     last_name       varchar(128),
     name            varchar(128),
+    owned_items     integer,
     primary key (userid)
 );
 create table users_owned_items

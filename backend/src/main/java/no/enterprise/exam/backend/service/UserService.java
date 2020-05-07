@@ -68,4 +68,18 @@ public class UserService {
         return users;
     }
 
+    public Users findByEmail(String email) {
+        try {
+            return em.createNamedQuery(Users.GET_BY_EMAIL, Users.class)
+                    .setParameter("email", email.toLowerCase())
+                    .getSingleResult();
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    public void updatePassword(String userId, String password) {
+        Users users = em.find(Users.class, userId);
+        users.setHashedPassword(passwordEncoder.encode(password));
+    }
 }

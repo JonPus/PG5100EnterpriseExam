@@ -24,7 +24,6 @@ public class SignUpController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-
     private String username;
 
     private String password;

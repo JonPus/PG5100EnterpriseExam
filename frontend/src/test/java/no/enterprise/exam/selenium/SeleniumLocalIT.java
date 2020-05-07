@@ -3,9 +3,7 @@ package no.enterprise.exam.selenium;
 import no.enterprise.exam.Application;
 import no.enterprise.exam.backend.entity.Item;
 import no.enterprise.exam.backend.service.ItemService;
-import no.enterprise.exam.selenium.po.CollectionPO;
-import no.enterprise.exam.selenium.po.IndexPO;
-import no.enterprise.exam.selenium.po.SignUpPO;
+import no.enterprise.exam.selenium.po.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
 
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
@@ -114,7 +113,6 @@ public class SeleniumLocalIT {
         collectionPO = home.getUserInfo();
         assertNotNull(collectionPO);
         assertTrue(collectionPO.getUserName().contains(userID));
-
 
         assertTrue(collectionPO.getDriver().getPageSource().contains("You currently have no items in your collection."));
 
@@ -251,6 +249,46 @@ public class SeleniumLocalIT {
         home.toStartingPage();
         home = home.searchOnPage("byName", firstItem.getItemName());
         assertTrue(home.isInFirstColumn(firstItem.getId().toString()));
+    }
+
+    @Test
+    public void testSignUpChangePasswordAndLogin() {
+
+        CollectionPO collectionPO = home.getUserInfo();
+        assertNull(collectionPO);
+
+        String userID = "Foo";
+        String password = "123456";
+        home = createNewUser(userID, password);
+        collectionPO = home.getUserInfo();
+        assertNotNull(collectionPO);
+        assertTrue(collectionPO.getUserName().contains(userID));
+
+        ProfilePO profilePO = home.toProfile();
+        assertTrue(profilePO.isOnPage());
+
+        profilePO.clickAndWait("changePassword");
+        profilePO.changePassword("Wrong", "New");
+        assertTrue(profilePO.isChangingPassword());
+
+        profilePO.changePassword("123456", "New", "Mismatch");
+        assertTrue(profilePO.isChangingPassword());
+
+        profilePO.changePassword("123456", "New");
+        assertFalse(profilePO.isChangingPassword());
+
+        home.doLogout();
+
+        assertFalse(home.isLoggedIn());
+        assertFalse(home.getDriver().getPageSource().contains(userID));
+
+        home.clickAndWait("linkToLoginId");
+
+        LoginPO loginPO = home.toLogin();
+        assertNull(loginPO.login(userID, password + "TestFailure"));
+
+        IndexPO indexPO = loginPO.login(userID, "New");
+        assertTrue(indexPO.isOnPage());
     }
 
 

@@ -14,7 +14,7 @@ public class Copy {
     @NotNull
     private Users ownedBy;
 
-    private Integer duplicates;
+    //private Integer duplicates;
 
     @ManyToOne
     @NotNull
@@ -40,13 +40,13 @@ public class Copy {
         this.ownedBy = boughtBy;
     }
 
-    public Integer getDuplicates() {
+    /*public Integer getDuplicates() {
         return duplicates;
     }
 
     public void setDuplicates(Integer duplicates) {
         this.duplicates = duplicates;
-    }
+    }*/
 
     public Item getItemInformation() {
         return itemInformation;

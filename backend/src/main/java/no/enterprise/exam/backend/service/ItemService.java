@@ -35,7 +35,8 @@ public class ItemService {
             String title,
             String description,
             Long value,
-            String itemName
+            String itemName,
+            Integer numberOfItems
     ) {
         Item item = new Item();
 
@@ -43,6 +44,7 @@ public class ItemService {
         item.setDescription(description);
         item.setValue(value);
         item.setItemName(itemName);
+        item.setNumberOfItem(numberOfItems);
 
         entityManager.persist(item);
 
@@ -124,6 +126,5 @@ public class ItemService {
             throw new IllegalArgumentException("You are out of Lootboxes, buy more!");
         }
     }
-
 
 }

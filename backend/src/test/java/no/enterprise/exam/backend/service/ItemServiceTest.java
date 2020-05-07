@@ -31,7 +31,8 @@ class ItemServiceTest extends ServiceTestBase {
                 "Title",
                 "MyDescription",
                 100L,
-                "Name"
+                "Name",
+                1
         );
 
         assertNotNull(id);
@@ -49,6 +50,7 @@ class ItemServiceTest extends ServiceTestBase {
                 "MyDescription",
                 100L,
                 "Name"
+                , 1
         );
 
         Long secondMonster = itemService.createItem(
@@ -56,6 +58,7 @@ class ItemServiceTest extends ServiceTestBase {
                 "MyDescription",
                 100L,
                 "Name"
+                , 1
         );
 
         assertNotNull(firstMonster);
@@ -72,7 +75,8 @@ class ItemServiceTest extends ServiceTestBase {
                 "Title",
                 "MyDescription",
                 100L,
-                "Name"
+                "Name",
+                1
         );
 
         assertNotNull(id);
@@ -85,11 +89,11 @@ class ItemServiceTest extends ServiceTestBase {
 
     @Test
     public void testGetRandomItem() {
-        itemService.createItem("Test1", "TestDesc1", 100L, "Test1");
-        itemService.createItem("Test2", "TestDesc2", 200L, "Test2");
-        itemService.createItem("Test3", "TestDesc3", 300L, "Test3");
-        itemService.createItem("Test4", "TestDesc4", 400L, "Test4");
-        itemService.createItem("Test5", "TestDesc5", 500L, "Test5");
+        itemService.createItem("Test1", "TestDesc1", 100L, "Test1", 1);
+        itemService.createItem("Test2", "TestDesc2", 200L, "Test2", 1);
+        itemService.createItem("Test3", "TestDesc3", 300L, "Test3", 1);
+        itemService.createItem("Test4", "TestDesc4", 400L, "Test4", 1);
+        itemService.createItem("Test5", "TestDesc5", 500L, "Test5", 1);
 
         Item newRandomItem = itemService.getRandomItem();
         assertNotNull(newRandomItem);
@@ -100,11 +104,11 @@ class ItemServiceTest extends ServiceTestBase {
         String userOne = "Foo";
         userService.createUser(userOne, userOne, "Bar", 1000L, 3, "123", "Foo@email.com", "admin");
 
-        itemService.createItem("Test1", "DescTest1", 300L, "TestTitle1");
-        itemService.createItem("Test2", "DescTest2", 200L, "TestTitle2");
-        itemService.createItem("Test3", "DescTest3", 200L, "TestTitle3");
-        itemService.createItem("Test4", "DescTest4", 200L, "TestTitle4");
-        itemService.createItem("Test5", "DescTest5", 200L, "TestTitle5");
+        itemService.createItem("Test1", "DescTest1", 300L, "TestTitle1", 1);
+        itemService.createItem("Test2", "DescTest2", 200L, "TestTitle2", 1);
+        itemService.createItem("Test3", "DescTest3", 200L, "TestTitle3", 1);
+        itemService.createItem("Test4", "DescTest4", 200L, "TestTitle4", 1);
+        itemService.createItem("Test5", "DescTest5", 200L, "TestTitle5", 1);
 
         itemService.openLootBox(userOne);
         List<Item> user = userService.getUser(userOne).getOwnedItems();
@@ -121,21 +125,24 @@ class ItemServiceTest extends ServiceTestBase {
                 "Title",
                 "MyDescription",
                 100L,
-                "Kaido"
+                "Kaido",
+                1
         );
 
         Long secondMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 100L,
-                "Luffy"
+                "Luffy",
+                1
         );
 
         Long thirdMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 100L,
-                "Luffy"
+                "Luffy",
+                1
         );
 
         assertNotNull(firstMonster);
@@ -157,7 +164,8 @@ class ItemServiceTest extends ServiceTestBase {
                 "Title",
                 "MyDescription",
                 200L,
-                "Kaido"
+                "Kaido",
+                1
 
         );
 
@@ -165,14 +173,16 @@ class ItemServiceTest extends ServiceTestBase {
                 "Title-2",
                 "MyDescription-2",
                 100L,
-                "Luffy"
+                "Luffy",
+                1
         );
 
         Long thirdMonster = itemService.createItem(
                 "Title-2",
                 "MyDescription-2",
                 200L,
-                "Luffy"
+                "Luffy",
+                1
 
         );
 

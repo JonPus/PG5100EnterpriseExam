@@ -9,8 +9,16 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name = Users.GET_BY_EMAIL, query = "select u from Users u where u.email = :email"),
+        @NamedQuery(name = Users.GET_BY_NAME, query = "select u from Users u where u.name = u.userID and u.name is not null")
+})
+
 @Entity
 public class Users {
+
+    public static final String GET_BY_EMAIL = "GET_BY_EMAIL";
+    public static final String GET_BY_NAME = "GET_BY_NAMES";
 
     @Id
     @NotBlank
@@ -23,13 +31,16 @@ public class Users {
     @Size(max = 128)
     private String lastName;
 
+    @NotNull
     private Long currency;
 
+    @NotNull
     private int availableBoxes;
 
-    @OneToMany(mappedBy = "ownedBy")
-    private List<Copy> copies;
+    /*@OneToMany(mappedBy = "ownedBy")
+    private List<Copy> copies;*/
 
+    @NotBlank
     @NotBlank
     private String hashedPassword;
 
@@ -45,6 +56,14 @@ public class Users {
 
     @ManyToMany
     private List<Item> ownedItems;
+
+    public List<Item> getOwnedItems() {
+        return ownedItems;
+    }
+
+    public void setOwnedItems(List<Item> ownedItems) {
+        this.ownedItems = ownedItems;
+    }
 
     public String getUserID() {
         return userID;
@@ -119,13 +138,13 @@ public class Users {
         this.enabled = enabled;
     }
 
-    public List<Item> getOwnedItems() {
-        return ownedItems;
+    /*public List<Copy> getCopies() {
+        return copies;
     }
 
-    public void setOwnedItems(List<Item> boughtItems) {
-        this.ownedItems = boughtItems;
-    }
+    public void setCopies(List<Copy> copies) {
+        this.copies = copies;
+}*/
 
 
 }

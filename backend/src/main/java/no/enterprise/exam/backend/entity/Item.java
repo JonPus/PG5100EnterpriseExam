@@ -30,6 +30,7 @@ public class Item {
     @Size(max = 300)
     private String itemName;
 
+    private int numberOfItem = 0;
 
     @ManyToMany(mappedBy = "ownedItems")
     private List<Users> allOwners;
@@ -78,12 +79,19 @@ public class Item {
         this.itemName = monsterName;
     }
 
-
     public List<Users> getAllOwners() {
         return allOwners;
     }
 
     public void setAllOwners(List<Users> allMasters) {
         this.allOwners = allMasters;
+    }
+
+    public int getNumberOfItem() {
+        return numberOfItem;
+    }
+
+    public void setNumberOfItem(int numberOfItem) {
+        this.numberOfItem = numberOfItem;
     }
 }

@@ -29,6 +29,17 @@ public abstract class LayoutPO extends PageObject {
         return po;
     }
 
+    public ProfilePO toProfile() {
+
+        clickAndWait("profileBtn");
+
+        ProfilePO profilePO = new ProfilePO(this);
+        assertTrue(profilePO.isOnPage());
+
+        return profilePO;
+
+    }
+
     public IndexPO doLogout() {
 
         clickAndWait("logoutBtn");
@@ -37,6 +48,14 @@ public abstract class LayoutPO extends PageObject {
         assertTrue(po.isOnPage());
 
         return po;
+    }
+
+    public LoginPO toLogin() {
+        clickAndWait("submit");
+        LoginPO loginPO = new LoginPO(this);
+        assertTrue(loginPO.isOnPage());
+
+        return loginPO;
     }
 
     public boolean isLoggedIn() {
