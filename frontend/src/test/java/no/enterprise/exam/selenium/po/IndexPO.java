@@ -31,7 +31,7 @@ public class IndexPO extends LayoutPO {
         return buttons.get(indexOfButton).getAttribute("id");
     }
 
-    public int getNumberOfTripsDisplayed() {
+    public int getNumberOfItemsDisplayed() {
         return getDriver().findElements(By.xpath("//table//tr")).size() - 1;
     }
 
@@ -51,22 +51,25 @@ public class IndexPO extends LayoutPO {
         return getDriver().getTitle().contains("Home page");
     }
 
-    /*public DetailsPO getDetails(String id) {
+    public CollectionPO getDetails(String id) {
         clickAndWait(id);
-        DetailsPO detailsPO = new DetailsPO(this);
-        assertTrue(detailsPO.isOnPage());
+        CollectionPO collectionPO = new CollectionPO(this);
+        assertTrue(collectionPO.isOnPage());
 
-        return detailsPO;
-    }*/
+        return collectionPO;
+    }
 
-    public UserPO getUserInfo() {
+
+
+
+    public CollectionPO getUserInfo() {
 
         if (getDriver().findElements(By.id("userID")).size() == 0)
             return null;
         clickAndWait("userID");
-        UserPO userPO = new UserPO(this);
-        assertTrue(userPO.isOnPage());
-        return userPO;
+        CollectionPO collectionPO = new CollectionPO(this);
+        assertTrue(collectionPO.isOnPage());
+        return collectionPO;
     }
 
 

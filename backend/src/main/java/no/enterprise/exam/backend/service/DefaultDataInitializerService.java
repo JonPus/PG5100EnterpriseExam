@@ -76,10 +76,38 @@ public class DefaultDataInitializerService {
         );
 
         Long pokemonItemSix = attempt(() -> monsterService.createItem(
-                "Dragonite the Dragon Pokémon",
+                "Mewtwo the Genetic Pokemon",
                 "Mewtwo is a Pokémon created by science.",
                 3100L,
                 "Mewtwo")
+        );
+
+        Long pokemonItemSeven = attempt(() -> monsterService.createItem(
+                "Mew the New Species Pokemon",
+                "Mew is a pink, bipedal Pokémon with mammalian features.",
+                4000L,
+                "Mew")
+        );
+
+        Long pokemonItemEight = attempt(() -> monsterService.createItem(
+                "Typhlosion the Volcano Pokemon",
+                "Tyranitar is a large, bipedal, dinosaurian Pokémon with a green, armor-like hide covering its body.",
+                4500L,
+                "Tyranitar")
+        );
+
+        Long pokemonItemNine = attempt(() -> monsterService.createItem(
+                "Suicune the Aurora Pokemon",
+                "Suicune is a slim, quadruped, blue, mammalian Pokémon with white, diamond-shaped markings.",
+                4800L,
+                "Suicune")
+        );
+
+        Long pokemonItemTen = attempt(() -> monsterService.createItem(
+                "Lugia the Diving Pokemon",
+                "Lugia is a large Pokémon that resembles a dragon, a plesiosaur, and a bird.",
+                5000L,
+                "Lugia")
         );
 
 

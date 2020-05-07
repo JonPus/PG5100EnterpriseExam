@@ -30,7 +30,6 @@ public class CopyService {
                 "SELECT p FROM Copy p WHERE p.itemInformation.id =?1", Copy.class);
         query.setParameter(1, monsterID);
 
-
         return query.getResultList();
     }
 

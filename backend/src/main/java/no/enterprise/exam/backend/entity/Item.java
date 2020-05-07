@@ -23,7 +23,6 @@ public class Item {
     @NotBlank
     private String description;
 
-
     @NotNull
     private Long value;
 

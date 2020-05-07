@@ -20,7 +20,6 @@ public class Copy {
     @NotNull
     private Item itemInformation;
 
-
     public Copy() {
 
     }

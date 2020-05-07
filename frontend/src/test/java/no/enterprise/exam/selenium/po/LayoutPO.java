@@ -46,7 +46,7 @@ public abstract class LayoutPO extends PageObject {
     }
 
     public boolean isInFirstColumn(String id) {
-        List<WebElement> table = getDriver().findElements(By.xpath("//*[@id=\"tripTable\"]//tbody//td[1]"));
+        List<WebElement> table = getDriver().findElements(By.xpath("//*[@id=\"itemTable\"]//tbody//td[1]"));
         boolean isFound = false;
         for (WebElement column : table) {
             if (column.getText().equals(id)) {

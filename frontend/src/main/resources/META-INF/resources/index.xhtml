@@ -12,13 +12,12 @@
         Home page
     </ui:define>
 
-
     <ui:define name="content">
 
         <ui:param name="errorText" value=""/>
 
         <c:if test="#{empty param['query']}">
-            <ui:param name="listOfItems" value="#{itemController.getItems(6)}"/>
+            <ui:param name="listOfItems" value="#{itemController.getItems(10)}"/>
             <ui:param name="errorText" value="No Item!"/>
         </c:if>
         <c:if test="#{!empty param['query']}">
