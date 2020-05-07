@@ -19,37 +19,55 @@
         <br/>
         <h:outputLabel id="userNameID">User name: #{users.name}</h:outputLabel><br/>
 
-        <h:dataTable styleClass="table table-hover" value="#{users.getOwnedItems()}"
-                     var="item" border="1" id="itemTable">
-            <h:column>
-                <f:facet name="header">Title</f:facet>
-                <h:outputText value="#{item.title}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Value</f:facet>
-                <h:outputText value="#{item.value}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Description</f:facet>
-                <h:outputText value="#{item.description}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Sell</f:facet>
-                <h:form prependId="false" id="collectionForm">
-                    <h:commandButton value="Sell"
-                                     styleClass="btn btn-outline-info"
-                                     action="#{itemController.sellLootBox(item.id, userInfoController.userName)}"
-                                     id="collectionBtn_#{item.id}"/>
-                </h:form>
-            </h:column>
-        </h:dataTable>
-        <h:outputLabel id="currency">Currency: #{users.getCurrency()}</h:outputLabel><br/>
+        <c:choose>
+            <c:when test="#{users.ownedItems.size() == 0}">
+                <p>You currently have no items in your collection.</p>
+            </c:when>
+            <c:otherwise>
+
+                <h:dataTable styleClass="table table-hover" value="#{users.getOwnedItems()}"
+                             var="item" border="1" id="itemTable">
+                    <h:column>
+                        <f:facet name="header">Title</f:facet>
+                        <h:outputText value="#{item.title}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Value</f:facet>
+                        <h:outputText value="#{item.value}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Description</f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Sell</f:facet>
+                        <h:form prependId="false" id="collectionForm">
+                            <h:commandButton value="Mill"
+                                             styleClass="btnMill"
+                                             action="#{itemController.sellLootBox(item.id, userInfoController.userName)}"
+                                             id="collectionBtn_#{item.id}"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+            </c:otherwise>
+        </c:choose>
+        <h:outputLabel id="currency">Currency: </h:outputLabel><h:outputLabel
+            id="currencyNumber">#{users.currency}</h:outputLabel><br/>
         <h:outputLabel id="Lootboxes">Number of lootboxes: #{users.availableBoxes}</h:outputLabel><br/>
         <h:form prependId="false" id="openLootForm">
-            <h:commandButton value="Open Lootbox"
-                             styleClass="btn btn-outline-info"
-                             action="#{itemController.openLootBox(userInfoController.userName)}"
-                             id="collection_1#{item.id}"/>
+
+            <c:choose>
+                <c:when test="#{users.availableBoxes == 0}">
+                    <p id="emptyBoxesTag">Please buy more lootboxes!</p>
+                </c:when>
+                <c:otherwise>
+                    <h:commandButton value="Open Lootbox"
+                                     styleClass="btn btn-outline-info"
+                                     action="#{itemController.openLootBox(userInfoController.userName)}"
+                                     id="collection_1#{item.id}"/>
+                </c:otherwise>
+            </c:choose>
+
         </h:form>
         <h:form prependId="false" id="buyLootForm">
             <h:commandButton value="Buy Lootbox"

@@ -68,15 +68,4 @@ public class UserService {
         return users;
     }
 
-    public Boolean createUserLogin(String userName, String password) {
-
-        String hashedPassword = passwordEncoder.encode(password);
-
-        Users users = new Users();
-        users.setName(userName);
-        users.setHashedPassword(hashedPassword);
-        return true;
-
-    }
-
 }

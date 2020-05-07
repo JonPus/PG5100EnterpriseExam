@@ -26,7 +26,7 @@ public class IndexPO extends LayoutPO {
     }
 
     public String getRandomButton() {
-        List<WebElement> buttons = getDriver().findElements(By.xpath("//*[contains(./@id, 'detailsBtn')]"));
+        List<WebElement> buttons = getDriver().findElements(By.xpath("//*[contains(./@id, 'collectionBtn')]"));
         int indexOfButton = new Random().nextInt(buttons.size());
         return buttons.get(indexOfButton).getAttribute("id");
     }
@@ -58,9 +58,6 @@ public class IndexPO extends LayoutPO {
 
         return collectionPO;
     }
-
-
-
 
     public CollectionPO getUserInfo() {
 

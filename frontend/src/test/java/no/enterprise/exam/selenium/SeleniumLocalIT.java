@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -115,15 +116,14 @@ public class SeleniumLocalIT {
         assertTrue(collectionPO.getUserName().contains(userID));
 
 
-        //Will always be 1 due to empty tabelcolumns.
-        assertEquals(1, home.getNumberOfItemsDisplayed());
+        assertTrue(collectionPO.getDriver().getPageSource().contains("You currently have no items in your collection."));
 
         collectionPO.doLogout();
         collectionPO = home.getUserInfo();
         assertNull(collectionPO);
     }
 
-   /* @Test
+    @Test
     public void testRedeemLootBox() {
 
         CollectionPO collectionPO = home.getUserInfo();
@@ -135,13 +135,91 @@ public class SeleniumLocalIT {
         assertNotNull(collectionPO);
         assertTrue(collectionPO.getUserName().contains(userID));
 
-        String buttonId = home.getRandomButton();
-        collectionPO = home.getDetails(buttonId);
-        collectionPO.redeemLootBox(userID);
+        collectionPO.clickAndWait("collection_1");
+        assertTrue(collectionPO.getDriver().getPageSource().contains("Number of lootboxes: 2"));
 
-        System.out.println("COLLECTION PAGE");
+        assertEquals(3, home.getNumberOfItemsDisplayed());
+    }
 
-    }*/
+    @Test
+    public void testFailedRedeemLootBox() {
+
+        CollectionPO collectionPO = home.getUserInfo();
+        assertNull(collectionPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        collectionPO = home.getUserInfo();
+        assertNotNull(collectionPO);
+        assertTrue(collectionPO.getUserName().contains(userID));
+
+        for (int i = 0; i < 3; i++) {
+            collectionPO.clickAndWait("collection_1");
+        }
+        assertTrue(collectionPO.getDriver().getPageSource().contains("Please buy more lootboxes!"));
+    }
+
+    @Test
+    public void testMillItem() {
+
+        CollectionPO collectionPO = home.getUserInfo();
+        assertNull(collectionPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        collectionPO = home.getUserInfo();
+        assertNotNull(collectionPO);
+        assertTrue(collectionPO.getUserName().contains(userID));
+
+        collectionPO.clickAndWait("collection_1");
+
+        String currency1 = getDriver().findElement(By.xpath("//*[@id=\"currencyNumber\"]\n")).getText();
+
+        Long currencyIntOne = Long.parseLong(currency1);
+
+        //System.out.println(currencyIntOne);
+
+        getDriver().findElement(By.xpath("//*[@id=\"itemTable:0:collectionBtn_\"]\n")).click();
+
+        String milledItem = getDriver().findElement(By.xpath("/html/body/table/tbody/tr[1]/td[2]\n")).getText();
+
+        Long milledIntOne = Long.parseLong(milledItem);
+
+        //System.out.println(milledIntOne + "Milled");
+
+        Long totalMillSale = currencyIntOne + milledIntOne;
+
+        //System.out.println(totalMillSale + " Total");
+
+        assertEquals(2, home.getNumberOfItemsDisplayed());
+
+        assertNotNull(totalMillSale);
+
+    }
+
+    @Test
+    public void testBuyLootBox() {
+
+        CollectionPO collectionPO = home.getUserInfo();
+        assertNull(collectionPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        collectionPO = home.getUserInfo();
+        assertNotNull(collectionPO);
+        assertTrue(collectionPO.getUserName().contains(userID));
+
+        collectionPO.clickAndWait("collection_2");
+
+        assertTrue(collectionPO.getDriver().getPageSource().contains("Number of lootboxes: 4"));
+
+        String userCurrency = getDriver().findElement(By.xpath("//*[@id=\"currencyNumber\"]\n")).getText();
+
+        long userCurrencyOne = Long.parseLong(userCurrency);
+
+        assertEquals(0, userCurrencyOne);
+
+    }
 
 
     @Test
