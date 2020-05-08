@@ -43,7 +43,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemOne = attempt(() -> itemService.createItem(
                 "Venusaur the Seed Pokemon",
-                "Venusaur is a squat, quadruped Pokémon with bumpy, blue-green skin.",
+                "Venusaur is a squat, quadruped Pokemon with bumpy, blue-green skin.",
                 1000L,
                 "Venusaur",
                 1)
@@ -51,7 +51,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemTwo = attempt(() -> itemService.createItem(
                 "Charizard the Flame Pokemon",
-                "Charizard is a draconic, bipedal Pokémon.",
+                "Charizard is a draconic, bipedal Pokemon.",
                 1000L,
                 "Charizard",
                 1)
@@ -59,15 +59,15 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemthree = attempt(() -> itemService.createItem(
                 "Blastoise the Shell Pokemon",
-                "Blastoise is a large, bipedal turtle-like Pokémon.",
+                "Blastoise is a large, bipedal turtle-like Pokemon.",
                 1000L,
                 "Blastoise",
                 1)
         );
 
         Long pokemonItemFour = attempt(() -> itemService.createItem(
-                "Gyarados the Atrocious Pokémon",
-                "Gyarados is a serpentine Pokémon with a long body covered in slightly overlapping scales.",
+                "Gyarados the Atrocious Pokemon",
+                "Gyarados is a serpentine Pokemon with a long body covered in slightly overlapping scales.",
                 1500L,
                 "Gyarados", 1
                 )
@@ -75,7 +75,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemFive = attempt(() -> itemService.createItem(
                 "Dragonite the Dragon Pokémon",
-                "Dragonite is a draconic, bipedal Pokémon with light orange skin.",
+                "Dragonite is a draconic, bipedal Pokemon with light orange skin.",
                 2500L,
                 "Dragonite",
                 1
@@ -84,7 +84,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemSix = attempt(() -> itemService.createItem(
                 "Mewtwo the Genetic Pokemon",
-                "Mewtwo is a Pokémon created by science.",
+                "Mewtwo is a Pokemon created by science.",
                 3100L,
                 "Mewtwo",
                 1)
@@ -92,7 +92,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemSeven = attempt(() -> itemService.createItem(
                 "Mew the New Species Pokemon",
-                "Mew is a pink, bipedal Pokémon with mammalian features.",
+                "Mew is a pink, bipedal Pokemon with mammalian features.",
                 4000L,
                 "Mew",
                 1)
@@ -100,7 +100,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemEight = attempt(() -> itemService.createItem(
                 "Typhlosion the Volcano Pokemon",
-                "Tyranitar is a large, bipedal, dinosaurian Pokémon with a green, armor-like hide covering its body.",
+                "Tyranitar is a large, bipedal, dinosaurian Pokemon with a green, armor-like hide covering its body.",
                 4500L,
                 "Tyranitar",
                 1)
@@ -108,7 +108,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemNine = attempt(() -> itemService.createItem(
                 "Suicune the Aurora Pokemon",
-                "Suicune is a slim, quadruped, blue, mammalian Pokémon with white, diamond-shaped markings.",
+                "Suicune is a slim, quadruped, blue, mammalian Pokemon with white, diamond-shaped markings.",
                 4800L,
                 "Suicune",
                 1)
@@ -116,7 +116,7 @@ public class DefaultDataInitializerService {
 
         Long pokemonItemTen = attempt(() -> itemService.createItem(
                 "Lugia the Diving Pokemon",
-                "Lugia is a large Pokémon that resembles a dragon, a plesiosaur, and a bird.",
+                "Lugia is a large Pokemon that resembles a dragon, a plesiosaur, and a bird.",
                 5000L,
                 "Lugia",
                 1)

@@ -39,7 +39,7 @@
 
 ### Notes
 
-* The Copy requirment I am not sure I did as asked on the requirment, so I did what I thought was right.
+* The Copy requierment I am not sure I did as asked on the requirment, so I did what I thought was right.
 
 ## Disclaimers 
 
