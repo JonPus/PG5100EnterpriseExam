@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--This code is added and adjusted from - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/main/resources/META-INF/resources/index.xhtml-->
+
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -14,23 +17,6 @@
     <ui:define name="title">
         Collection page
     </ui:define>
-
-    <c:if test="#{!empty param['query']}">
-        <ui:param name="listOfItems"
-                  value="#{itemController.filterItemsBy(param['searchBy'], param['query'])}"/>
-        <ui:param name="errorText" value="No items meating criteria"/>
-    </c:if>
-
-    <h:form prependId="false" styleClass="searchBox">
-        <h:inputText id="queryInputID" styleClass="form-control m-2 p-2" value="#{searchController.query}"/>
-        <h:selectOneMenu id="selectOneID" styleClass="form-control m-2 p-2"
-                         value="#{searchController.selection}">
-            <f:selectItem itemValue="byValue" itemLabel="Search by value"/>
-            <f:selectItem itemValue="byName" itemLabel="Search by name"/>
-        </h:selectOneMenu>
-        <h:commandButton id="searchBtn" styleClass="btn-outline-primary form-control m-2 p-2" value="Submit"
-                         action="#{searchController.getSearchLinkCollection()}"/>
-    </h:form>
 
     <ui:define name="content">
         <c:set var="users" value="#{userInfoController.user}"/>

@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+//This code is adjusted and added from Andrea Arcuri's reposition - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/main/java/org/tsdes/intro/exercises/quizgame/frontend/controller/MatchController.java'
+
 @Named
 @SessionScoped
 public class ItemController implements Serializable {
@@ -30,9 +32,9 @@ public class ItemController implements Serializable {
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
     }
 
-    public String getMonsterRedirectionLink(Long itemID) {
+    public String getItemRedirectionLink(Long itemID) {
         this.itemID = itemID;
-        return "/details.jsf?monsterID=" + itemID + "&faces-redirect=true";
+        return "/details.jsf?itemID=" + itemID + "&faces-redirect=true";
     }
 
     public List<Item> filterItemsBy(String searchBy, String query) {

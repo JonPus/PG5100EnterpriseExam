@@ -2,13 +2,10 @@ package no.enterprise.exam.selenium.po;
 
 import no.enterprise.exam.selenium.PageObject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
+//This code is added and adjusted from - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/test/java/org/tsdes/intro/exercises/quizgame/selenium/po/SignUpPO.java
 
 public class ProfilePO extends LayoutPO {
-
-    public ProfilePO(WebDriver driver, String host, int port) {
-        super(driver, host, port);
-    }
 
     public ProfilePO(PageObject other) {
         super(other);

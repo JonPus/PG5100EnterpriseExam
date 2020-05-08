@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+//This code is added and adjusted from Andrea Arcuri's Repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/main/java/org/tsdes/intro/exercises/quizgame/frontend/controller/SignUpController.java'
+
 @Named
 @RequestScoped
 public class UpdatePasswordController {

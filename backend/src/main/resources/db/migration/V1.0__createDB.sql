@@ -39,6 +39,8 @@ create table users_roles
     users_userid varchar(255) not null,
     roles        varchar(255)
 );
+
+-- This code is added and edited from Andrea Arcuri's github repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/resources/db/migration/V1.0__createDB.sql'
 alter table users
     add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email);
 alter table copy

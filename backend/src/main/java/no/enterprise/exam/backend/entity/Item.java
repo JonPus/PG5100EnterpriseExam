@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+//This code is edited and adjusted for the use of this project from Andrea Arcuri's repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/java/org/tsdes/intro/exercises/quizgame/backend/entity/Category.java'
+
 @Entity
 public class Item {
 
@@ -81,14 +83,6 @@ public class Item {
 
     public List<Users> getAllOwners() {
         return allOwners;
-    }
-
-    public void setAllOwners(List<Users> allMasters) {
-        this.allOwners = allMasters;
-    }
-
-    public int getNumberOfItem() {
-        return numberOfItem;
     }
 
     public void setNumberOfItem(int numberOfItem) {

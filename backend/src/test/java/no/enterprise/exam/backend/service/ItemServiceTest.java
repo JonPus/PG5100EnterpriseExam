@@ -11,6 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+//This code is added and adjusted from Andrea Arcuri's Repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/test/java/org/tsdes/intro/exercises/quizgame/backend/service/CategoryServiceTest.java'
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
@@ -25,7 +27,7 @@ class ItemServiceTest extends ServiceTestBase {
     private UserService userService;
 
     @Test
-    public void testCreateMonster() {
+    public void testCreateItem() {
 
         Long id = itemService.createItem(
                 "Title",
@@ -43,7 +45,7 @@ class ItemServiceTest extends ServiceTestBase {
     }
 
     @Test
-    public void testGetAllMonsters() {
+    public void testGetAllItems() {
 
         Long firstMonster = itemService.createItem(
                 "Title",
@@ -70,7 +72,7 @@ class ItemServiceTest extends ServiceTestBase {
     }
 
     @Test
-    public void testDeleteMonster() {
+    public void testDeleteItem() {
         Long id = itemService.createItem(
                 "Title",
                 "MyDescription",
@@ -119,7 +121,7 @@ class ItemServiceTest extends ServiceTestBase {
     }
 
     @Test
-    public void testFilterMonstersByNames() {
+    public void testFilterItemsByNames() {
 
         Long firstMonster = itemService.createItem(
                 "Title",

@@ -24,6 +24,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+//This code is from https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/test/java/org/tsdes/intro/exercises/quizgame/selenium/SeleniumLocalIT.java &
+//        https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/test/java/org/tsdes/intro/exercises/quizgame/selenium/SeleniumTestBase.java
+//
+
+
 
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
@@ -175,19 +180,13 @@ public class SeleniumLocalIT {
 
         Long currencyIntOne = Long.parseLong(currency1);
 
-        //System.out.println(currencyIntOne);
-
         getDriver().findElement(By.xpath("//*[@id=\"itemTable:0:collectionBtn_\"]\n")).click();
 
         String milledItem = getDriver().findElement(By.xpath("/html/body/table/tbody/tr[1]/td[2]\n")).getText();
 
         Long milledIntOne = Long.parseLong(milledItem);
 
-        //System.out.println(milledIntOne + "Milled");
-
         Long totalMillSale = currencyIntOne + milledIntOne;
-
-        //System.out.println(totalMillSale + " Total");
 
         assertEquals(2, home.getNumberOfItemsDisplayed());
 

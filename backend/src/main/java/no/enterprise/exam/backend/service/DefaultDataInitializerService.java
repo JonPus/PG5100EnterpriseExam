@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.function.Supplier;
 
+//This code is edited and adjusted to fit this project from Andrea Arcuri's repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/java/org/tsdes/intro/exercises/quizgame/backend/service/DefaultDataInitializerService.java'
+
 @Service
 public class DefaultDataInitializerService {
 
@@ -17,7 +19,7 @@ public class DefaultDataInitializerService {
     private CopyService copyService;
 
     @Autowired
-    private ItemService monsterService;
+    private ItemService itemService;
 
     @PostConstruct
     public void init() {
@@ -39,7 +41,7 @@ public class DefaultDataInitializerService {
                     thirdUser, thirdUser, "bar-last-name", 3000L, 3, "123", "bar@email.com", "user");
         });
 
-        Long pokemonItemOne = attempt(() -> monsterService.createItem(
+        Long pokemonItemOne = attempt(() -> itemService.createItem(
                 "Venusaur the Seed Pokemon",
                 "Venusaur is a squat, quadruped Pokémon with bumpy, blue-green skin.",
                 1000L,
@@ -47,7 +49,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemTwo = attempt(() -> monsterService.createItem(
+        Long pokemonItemTwo = attempt(() -> itemService.createItem(
                 "Charizard the Flame Pokemon",
                 "Charizard is a draconic, bipedal Pokémon.",
                 1000L,
@@ -55,7 +57,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemthree = attempt(() -> monsterService.createItem(
+        Long pokemonItemthree = attempt(() -> itemService.createItem(
                 "Blastoise the Shell Pokemon",
                 "Blastoise is a large, bipedal turtle-like Pokémon.",
                 1000L,
@@ -63,7 +65,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemFour = attempt(() -> monsterService.createItem(
+        Long pokemonItemFour = attempt(() -> itemService.createItem(
                 "Gyarados the Atrocious Pokémon",
                 "Gyarados is a serpentine Pokémon with a long body covered in slightly overlapping scales.",
                 1500L,
@@ -71,7 +73,7 @@ public class DefaultDataInitializerService {
                 )
         );
 
-        Long pokemonItemFive = attempt(() -> monsterService.createItem(
+        Long pokemonItemFive = attempt(() -> itemService.createItem(
                 "Dragonite the Dragon Pokémon",
                 "Dragonite is a draconic, bipedal Pokémon with light orange skin.",
                 2500L,
@@ -80,7 +82,7 @@ public class DefaultDataInitializerService {
                 )
         );
 
-        Long pokemonItemSix = attempt(() -> monsterService.createItem(
+        Long pokemonItemSix = attempt(() -> itemService.createItem(
                 "Mewtwo the Genetic Pokemon",
                 "Mewtwo is a Pokémon created by science.",
                 3100L,
@@ -88,7 +90,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemSeven = attempt(() -> monsterService.createItem(
+        Long pokemonItemSeven = attempt(() -> itemService.createItem(
                 "Mew the New Species Pokemon",
                 "Mew is a pink, bipedal Pokémon with mammalian features.",
                 4000L,
@@ -96,7 +98,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemEight = attempt(() -> monsterService.createItem(
+        Long pokemonItemEight = attempt(() -> itemService.createItem(
                 "Typhlosion the Volcano Pokemon",
                 "Tyranitar is a large, bipedal, dinosaurian Pokémon with a green, armor-like hide covering its body.",
                 4500L,
@@ -104,7 +106,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemNine = attempt(() -> monsterService.createItem(
+        Long pokemonItemNine = attempt(() -> itemService.createItem(
                 "Suicune the Aurora Pokemon",
                 "Suicune is a slim, quadruped, blue, mammalian Pokémon with white, diamond-shaped markings.",
                 4800L,
@@ -112,7 +114,7 @@ public class DefaultDataInitializerService {
                 1)
         );
 
-        Long pokemonItemTen = attempt(() -> monsterService.createItem(
+        Long pokemonItemTen = attempt(() -> itemService.createItem(
                 "Lugia the Diving Pokemon",
                 "Lugia is a large Pokémon that resembles a dragon, a plesiosaur, and a bird.",
                 5000L,

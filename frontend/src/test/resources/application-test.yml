@@ -1,3 +1,6 @@
+#This code is from - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/test/resources/application-test.yml
+
+
 jsf:
   projectStage: Development
 
@@ -10,4 +13,4 @@ spring:
     database: h2
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate

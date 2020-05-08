@@ -1,15 +1,14 @@
 package no.enterprise.exam.selenium.po;
 
 import no.enterprise.exam.selenium.PageObject;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//This code is added and adjusted from - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/test/java/org/tsdes/intro/exercises/quizgame/selenium/po/SignUpPO.java
+
+
 public class SignUpPO extends LayoutPO {
 
-    public SignUpPO(WebDriver driver, String host, int port) {
-        super(driver, host, port);
-    }
 
     public SignUpPO(PageObject other) {
         super(other);

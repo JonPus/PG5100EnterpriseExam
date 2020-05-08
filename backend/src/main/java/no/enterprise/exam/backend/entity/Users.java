@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
+//This code is adjusted and edited to fit this project from Andrea Arcuri's Github Repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/java/org/tsdes/intro/exercises/quizgame/backend/entity/User.java
+
 @NamedQueries({
         @NamedQuery(name = Users.GET_BY_EMAIL, query = "select u from Users u where u.email = :email"),
         @NamedQuery(name = Users.GET_BY_NAME, query = "select u from Users u where u.name = u.userID and u.name is not null")
@@ -36,9 +38,6 @@ public class Users {
 
     @NotNull
     private int availableBoxes;
-
-    /*@OneToMany(mappedBy = "ownedBy")
-    private List<Copy> copies;*/
 
     @NotBlank
     @NotBlank
@@ -137,14 +136,5 @@ public class Users {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
-    /*public List<Copy> getCopies() {
-        return copies;
-    }
-
-    public void setCopies(List<Copy> copies) {
-        this.copies = copies;
-}*/
-
 
 }

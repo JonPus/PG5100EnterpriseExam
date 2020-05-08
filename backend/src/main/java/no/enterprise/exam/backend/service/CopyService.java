@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+//This code is edited and adjusted from Andrea Arcuri's repository from Github - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/java/org/tsdes/intro/exercises/quizgame/backend/service/QuizService.java'
+
 @Service
 @Transactional
 public class CopyService {
@@ -53,7 +55,7 @@ public class CopyService {
         return copy.getId();
     }
 
-    public List<Copy> filterPurchaseByUser(String userID) {
+    public List<Copy> filterBuyLootByUser(String userID) {
         TypedQuery<Copy> query = entityManager.createQuery(
                 "SELECT p FROM Copy p WHERE p.ownedBy.userID =?1", Copy.class
         );

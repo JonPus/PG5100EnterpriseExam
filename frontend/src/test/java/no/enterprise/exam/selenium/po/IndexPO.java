@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-import java.util.Random;
+//This code is added and adjusted from - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/main/resources/application.yml
+
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,12 +23,6 @@ public class IndexPO extends LayoutPO {
 
     public void toStartingPage() {
         getDriver().get(host + ":" + port);
-    }
-
-    public String getRandomButton() {
-        List<WebElement> buttons = getDriver().findElements(By.xpath("//*[contains(./@id, 'collectionBtn')]"));
-        int indexOfButton = new Random().nextInt(buttons.size());
-        return buttons.get(indexOfButton).getAttribute("id");
     }
 
     public int getNumberOfItemsDisplayed() {
@@ -49,14 +43,6 @@ public class IndexPO extends LayoutPO {
     @Override
     public boolean isOnPage() {
         return getDriver().getTitle().contains("Home page");
-    }
-
-    public CollectionPO getDetails(String id) {
-        clickAndWait(id);
-        CollectionPO collectionPO = new CollectionPO(this);
-        assertTrue(collectionPO.isOnPage());
-
-        return collectionPO;
     }
 
     public CollectionPO getUserInfo() {

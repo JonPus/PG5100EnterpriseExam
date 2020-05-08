@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.Collections;
 
+//This code is adjusted and edited from Andrea Arcuri's Github repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/java/org/tsdes/intro/exercises/quizgame/backend/service/UserService.java'
+
 @Service
 @Transactional
 public class UserService {
@@ -66,16 +68,6 @@ public class UserService {
         }
         users.getOwnedItems().size();
         return users;
-    }
-
-    public Users findByEmail(String email) {
-        try {
-            return em.createNamedQuery(Users.GET_BY_EMAIL, Users.class)
-                    .setParameter("email", email.toLowerCase())
-                    .getSingleResult();
-        } catch (Exception ignored) {
-            return null;
-        }
     }
 
     public void updatePassword(String userId, String password) {

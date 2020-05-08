@@ -7,6 +7,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+//This code is added and ajusted from - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/frontend/src/test/java/org/tsdes/intro/exercises/quizgame/selenium/po/LayoutPO.java
+
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class LayoutPO extends PageObject {

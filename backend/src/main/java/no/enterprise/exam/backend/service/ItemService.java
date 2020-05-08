@@ -11,6 +11,8 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Random;
 
+//This code is is adjusted and edited from Andrea Arcuri's repository - https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/exercise-solutions/quiz-game/part-11/backend/src/main/java/org/tsdes/intro/exercises/quizgame/backend/service/CategoryService.java'
+
 @Service
 @Transactional
 public class ItemService {
