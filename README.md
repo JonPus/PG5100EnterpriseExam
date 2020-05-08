@@ -1,5 +1,7 @@
 # Testing_Security_Devolpment_Enterprise_Systems PG5100 2020 - A Gacha Lootbox Game! <(''<)
 
+[![Build Status](https://travis-ci.com/JonPus/PG5100EnterpriseExam.svg?token=WNYDyxATS1ezQLqAT1RT&branch=master)](https://travis-ci.com/JonPus/PG5100EnterpriseExam)
+
 ### Exam
 
 * The Requirments through R1 to R5 has been completed.
