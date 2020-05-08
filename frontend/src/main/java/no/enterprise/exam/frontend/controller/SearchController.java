@@ -18,10 +18,6 @@ public class SearchController implements Serializable {
         this.selection = selection;
     }
 
-    public String getSearchLink() {
-        return "index?searchBy=" + selection + "&query=" + query + "&faces-redirect=true";
-    }
-
     public String getQuery() {
         return query;
     }
@@ -29,4 +25,13 @@ public class SearchController implements Serializable {
     public void setQuery(String query) {
         this.query = query;
     }
+
+    public String getSearchLink() {
+        return "index?searchBy=" + selection + "&query=" + query + "&faces-redirect=true";
+    }
+
+    public String getSearchLinkCollection() {
+        return "collection?searchBy=" + selection + "&query=" + query + "&faces-redirect=true";
+    }
+
 }

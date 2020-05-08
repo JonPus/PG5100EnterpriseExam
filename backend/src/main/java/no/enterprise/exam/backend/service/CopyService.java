@@ -18,17 +18,17 @@ public class CopyService {
     @Autowired
     private EntityManager entityManager;
 
-    public List<Copy> getAllPurchases() {
+    public List<Copy> getAllCopies() {
         TypedQuery<Copy> query = entityManager.createQuery(
                 "SELECT p FROM Copy p", Copy.class);
 
         return query.getResultList();
     }
 
-    public List<Copy> filterPurchasesByMonster(Long monsterID) {
+    public List<Copy> filterCopiesByItem(Long itemID) {
         TypedQuery<Copy> query = entityManager.createQuery(
-                "SELECT p FROM Copy p WHERE p.itemInformation.id =?1", Copy.class);
-        query.setParameter(1, monsterID);
+                "SELECT c FROM Copy c WHERE c.itemInformation.id =?1", Copy.class);
+        query.setParameter(1, itemID);
 
         return query.getResultList();
     }
@@ -52,7 +52,6 @@ public class CopyService {
 
         return copy.getId();
     }
-
 
     public List<Copy> filterPurchaseByUser(String userID) {
         TypedQuery<Copy> query = entityManager.createQuery(

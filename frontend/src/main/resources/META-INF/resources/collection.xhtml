@@ -15,12 +15,29 @@
         Collection page
     </ui:define>
 
+    <c:if test="#{!empty param['query']}">
+        <ui:param name="listOfItems"
+                  value="#{itemController.filterItemsBy(param['searchBy'], param['query'])}"/>
+        <ui:param name="errorText" value="No items meating criteria"/>
+    </c:if>
+
+    <h:form prependId="false" styleClass="searchBox">
+        <h:inputText id="queryInputID" styleClass="form-control m-2 p-2" value="#{searchController.query}"/>
+        <h:selectOneMenu id="selectOneID" styleClass="form-control m-2 p-2"
+                         value="#{searchController.selection}">
+            <f:selectItem itemValue="byValue" itemLabel="Search by value"/>
+            <f:selectItem itemValue="byName" itemLabel="Search by name"/>
+        </h:selectOneMenu>
+        <h:commandButton id="searchBtn" styleClass="btn-outline-primary form-control m-2 p-2" value="Submit"
+                         action="#{searchController.getSearchLinkCollection()}"/>
+    </h:form>
+
     <ui:define name="content">
         <c:set var="users" value="#{userInfoController.user}"/>
         <br/>
         <h:outputLabel id="userNameID">User name: #{users.name}</h:outputLabel><br/>
         <sec:authenticated>
-                <h:link id="profileBtn" styleClass="btn p-1 m-3 btn-outline-danger" outcome="/profile.jsf" value="Profile"/>
+            <h:link id="profileBtn" styleClass="btn p-1 m-3 btn-outline-danger" outcome="/profile.jsf" value="Profile"/>
         </sec:authenticated>
 
         <c:choose>
@@ -68,7 +85,6 @@
                     <h:commandButton value="Open Lootbox"
                                      styleClass="btn btn-outline-info"
                                      action="#{itemController.openLootBox(userInfoController.userName)}"
-
                                      id="collection_1#{item.id}"/>
                 </c:otherwise>
             </c:choose>

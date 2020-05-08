@@ -242,10 +242,13 @@ public class SeleniumLocalIT {
 
     @Test
     public void testSearch() {
+
         List<Item> allItems = itemService.getAllItems(false);
         Item firstItem = allItems.get(0);
+
         home = home.searchOnPage("byValue", firstItem.getValue().toString());
         assertTrue(home.isInFirstColumn(firstItem.getId().toString()));
+
         home.toStartingPage();
         home = home.searchOnPage("byName", firstItem.getItemName());
         assertTrue(home.isInFirstColumn(firstItem.getId().toString()));

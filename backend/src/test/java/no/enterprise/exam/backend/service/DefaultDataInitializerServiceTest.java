@@ -27,7 +27,7 @@ class DefaultDataInitializerServiceTest {
     @Test
     public void testInit() {
 
-        assertTrue(copyService.getAllPurchases().size() > 0);
+        assertTrue(copyService.getAllCopies().size() > 0);
 
         assertTrue(monsterService.getAllItems(true).stream()
                 .mapToLong(m -> m.getAllOwners().size())

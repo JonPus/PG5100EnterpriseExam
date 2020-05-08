@@ -75,8 +75,8 @@ class CopyServiceTest extends ServiceTestBase {
         assertNotNull(secondPurchase);
         assertNotNull(thirdPurchase);
 
-        List<Copy> firstMonsterFilter = copyService.filterPurchasesByMonster(firstMonster);
-        List<Copy> secondMonsterFilter = copyService.filterPurchasesByMonster(secondMonster);
+        List<Copy> firstMonsterFilter = copyService.filterCopiesByItem(firstMonster);
+        List<Copy> secondMonsterFilter = copyService.filterCopiesByItem(secondMonster);
 
         assertEquals(1, firstMonsterFilter.size());
         assertEquals(2, secondMonsterFilter.size());

@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 
 import javax.enterprise.context.RequestScoped;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @RequestScoped
 @Controller
@@ -24,8 +27,14 @@ public class SignUpController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @NotNull
+    @NotBlank
+    @Size(max = 128)
     private String username;
 
+    @NotNull
+    @NotBlank
+    @Size(max = 128)
     private String password;
 
     public String signUpUser() {
@@ -35,8 +44,9 @@ public class SignUpController {
             registered = userService.createUser(
                     username,
                     username,
-                    username + "Last",
-                    1000L, 3,
+                    username + " Lastname",
+                    1000L,
+                    3,
                     password,
                     username + "@email.com",
                     "user");
